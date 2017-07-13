@@ -1,18 +1,11 @@
-import { combineReducers } from 'redux'
-import locationReducer from './location'
+import { combineReducers } from 'redux';
 
-export const makeRootReducer = (asyncReducers) => {
-  return combineReducers({
-    location: locationReducer,
-    ...asyncReducers
-  })
-}
+import AppReducer from '../components/App/AppReducer';
+import CourseCategoryReducer from '../components/CourseCategory/CourseCategoryReducer';
 
-export const injectReducer = (store, { key, reducer }) => {
-  if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
+export const rootReducer = combineReducers({
+  app: AppReducer,
+  courseCategory: CourseCategoryReducer,
+});
 
-  store.asyncReducers[key] = reducer
-  store.replaceReducer(makeRootReducer(store.asyncReducers))
-}
-
-export default makeRootReducer
+export default rootReducer;
