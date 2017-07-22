@@ -5,11 +5,9 @@
 
     public class BaseController : Controller
     {
-        protected readonly IUnitOfWork _unitOfWork;
-
-        public BaseController(IUnitOfWork unitOfWork)
+        public BaseController()
         {
-            _unitOfWork = unitOfWork;
+            
         }
     }
 }

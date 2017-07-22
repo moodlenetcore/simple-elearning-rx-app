@@ -9,6 +9,7 @@
         public SimpleELearningContext Create(DbContextFactoryOptions options)
         {
             var optionsBuilder = new DbContextOptionsBuilder<SimpleELearningContext>();
+            //optionsBuilder.UseInMemoryDatabase();
             optionsBuilder.UseSqlServer("Server=DESKTOP-RJ20MT0;Database=SimpleELearning;User Id=sa;Password=123456789;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             return new SimpleELearningContext(optionsBuilder.Options);

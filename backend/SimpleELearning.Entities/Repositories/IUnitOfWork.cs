@@ -4,7 +4,7 @@
 
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
+        IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
         int Commit();
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using SimpleELearning.Entities.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using SimpleElearning.Services.Interfaces;
+using SimpleElearning.Services;
 
 namespace SimpleELearning.Api
 {
@@ -35,6 +37,7 @@ namespace SimpleELearning.Api
 
             services.AddScoped<IDbContextFactory<SimpleELearningContext>, DbContextFactory>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
 
             services.AddSwaggerGen(c =>
             {

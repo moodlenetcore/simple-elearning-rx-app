@@ -17,15 +17,15 @@ namespace SimpleELearning.Entities.Repositories
             _context = dbContextFactory.Create(new DbContextFactoryOptions());
         }
 
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
             if (_repositories == null)
                 _repositories = new Dictionary<Type, object>();
 
             if (_repositories.Keys.Contains(typeof(TEntity)))
-                return _repositories[typeof(TEntity)] as IRepository<TEntity>;
+                return _repositories[typeof(TEntity)] as IGenericRepository<TEntity>;
 
-            var repository = new Repository<TEntity>(_context);
+            var repository = new GenericRepository<TEntity>(_context);
             _repositories.Add(typeof(TEntity), repository);
 
             return repository;
@@ -37,7 +37,7 @@ namespace SimpleELearning.Entities.Repositories
             {
                 return _context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return -1;
             }

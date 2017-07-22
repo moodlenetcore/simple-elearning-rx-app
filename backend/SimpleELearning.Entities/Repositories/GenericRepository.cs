@@ -7,21 +7,20 @@
     using Microsoft.EntityFrameworkCore;
     using LinqKit;
 
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         internal DbContext _context;
         internal DbSet<TEntity> _dbSet;
 
-        public Repository(DbContext context)
+        public GenericRepository(DbContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-
         public IEnumerable<TEntity> Get(
-           Expression<Func<TEntity, bool>> filter = null,
-           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-           params Expression<Func<TEntity, object>>[] includeProperties)
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _dbSet.AsExpandable();
 
@@ -34,29 +33,23 @@
             if (orderBy != null)
                 query = orderBy(query);
 
-            return query.ToList();
+            return query.AsEnumerable();
         }
 
-        public TEntity Find(params object[] keyValues)
+        public TEntity GetById(long id)
         {
-            return _dbSet.Find(keyValues);
+            return _context.Set<TEntity>().Find(id);
         }
 
-        public TEntity Insert(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             return _dbSet.Add(entity).Entity;
         }
 
-        public TEntity Update(TEntity entityToUpdate)
+        public TEntity Edit(TEntity entityToUpdate)
         {
             _context.Entry(entityToUpdate).State = EntityState.Modified;
             return entityToUpdate;
-        }
-
-        public void Delete(object id)
-        {
-            TEntity entityToDelete = _dbSet.Find(id);
-            Delete(entityToDelete);
         }
 
         public void Delete(TEntity entityToDelete)
@@ -89,6 +82,11 @@
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
+        }        
         #endregion
     }
 }
