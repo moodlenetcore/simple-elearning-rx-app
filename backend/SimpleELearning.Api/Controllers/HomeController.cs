@@ -4,7 +4,7 @@ namespace SimpleELearning.Api.Controllers
 {
     public class HomeController : BaseController
     {
-        // GET api/courses
+        // GET swagger
         [HttpGet]
         public IActionResult Index()
         {
