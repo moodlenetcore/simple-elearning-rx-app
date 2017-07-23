@@ -32,6 +32,11 @@ const config = {
       'node_modules',
     ],
     extensions: ['*', '.js', '.jsx', '.json'],
+    alias: {
+      store: `${inProject(project.srcDir)}/store/`,
+      components: `${inProject(project.srcDir)}/components/`,
+      styles: `${inProject(project.srcDir)}/styles/`,
+    },
   },
   externals: project.externals,
   module: {
