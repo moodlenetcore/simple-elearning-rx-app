@@ -1,6 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { Header, Table, Rating } from 'semantic-ui-react';
+import { Container, Row, Col } from 'reactstrap';
+
+import CourseCategoryRow from './CourseCategoryRow';
+
 class PageExContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -11,23 +16,42 @@ class PageExContainer extends React.Component {
         courseCategories,
       } = this.props;
 
+    const courseCategoriesRowItem = [];
+    if (courseCategories) {
+      courseCategories.forEach((item, index) => {
+        courseCategoriesRowItem.push(
+          <CourseCategoryRow
+            name={item.name}
+          />,
+        );
+      });
+    }
+
     return (
-      <div className="col-md-12">
-        <div className="col-md-4">
-          <ul>
+      <Container>
+        <Row>
+          <Col md="6">
             {
-              courseCategories.map(courseCategory =>
-                (<li>
-                  {courseCategory.name}
-                </li>),
-              )
+              courseCategories ?
+                <Table celled>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell>Category Name</Table.HeaderCell>
+                      <Table.HeaderCell></Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  <Table.Body>
+                    {courseCategoriesRowItem}
+                  </Table.Body>
+                </Table> :
+              null
             }
-          </ul>
-        </div>
-        <div className="col-md-8">
-          {this.props.children}
-        </div>
-      </div>
+          </Col>
+          <Col md="6">
+          
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

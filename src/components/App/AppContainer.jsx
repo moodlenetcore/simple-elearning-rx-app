@@ -21,7 +21,9 @@ export class AppContainer extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div>
+        <h1>APP</h1>
+        <h4>====================</h4>
         {this.props.children}
       </div>
     );
