@@ -1,43 +1,50 @@
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Header, Table, Rating } from 'semantic-ui-react';
 import { Container, Row, Col } from 'reactstrap';
+import { Table } from 'semantic-ui-react';
 
 import CourseCategoryRow from './CourseCategoryRow';
+import * as PageExActions from './PageExActions';
 
 class PageExContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.removeItem = this.removeItem.bind(this);
+  }
+
+  removeItem(index) {
+    this.props.actions.removeItem(index);
   }
 
   render() {
     const {
-        courseCategories,
+        pageEx,
       } = this.props;
 
-    const courseCategoriesRowItem = [];
-    if (courseCategories) {
-      courseCategories.forEach((item, index) => {
-        courseCategoriesRowItem.push(
-          <CourseCategoryRow
-            name={item.name}
-          />,
-        );
-      });
+    let courseCategoriesRowItem = [];
+    if (pageEx.courseCategories) {
+      courseCategoriesRowItem = pageEx.courseCategories.map((item, index) => (
+        <CourseCategoryRow
+          index={index}
+          name={item.name}
+          onRemoveItem={this.removeItem}
+        />
+      ));
     }
 
     return (
       <Container>
         <Row>
-          <Col md="6">
+          <Col md="4" className="pull-left">
             {
-              courseCategories ?
+              pageEx.courseCategories ?
                 <Table celled>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell>Category Name</Table.HeaderCell>
-                      <Table.HeaderCell></Table.HeaderCell>
+                      <Table.HeaderCell />
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
@@ -47,9 +54,7 @@ class PageExContainer extends React.Component {
               null
             }
           </Col>
-          <Col md="6">
-          
-          </Col>
+          <Col md="8" />
         </Row>
       </Container>
     );
@@ -57,15 +62,20 @@ class PageExContainer extends React.Component {
 }
 
 PageExContainer.propTypes = {
-  courseCategories: PropTypes.array.isRequired,
-  children: PropTypes.node,
+  actions: PropTypes.object.isRequired,
 };
 
 export function mapStateToProps(state) {
   const pageEx = state.pageEx;
   return {
-    courseCategories: pageEx.courseCategories,
+    pageEx,
   };
 }
 
-export default connect(mapStateToProps)(PageExContainer);
+export function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(PageExActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageExContainer);

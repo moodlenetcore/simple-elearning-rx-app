@@ -22,8 +22,11 @@ export class AppContainer extends React.Component {
   render() {
     return (
       <div>
-        <h1>APP</h1>
-        <h4>====================</h4>
+        <div style={{ textAlign: 'center' }}>
+          <h1>APP</h1>
+          <h4>----------------------------------------------------------------------------</h4>
+        </div>
+
         {this.props.children}
       </div>
     );

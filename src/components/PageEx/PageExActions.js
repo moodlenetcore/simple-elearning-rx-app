@@ -1,8 +1,8 @@
 import * as ActionTypes from './PageExActionTypes';
 
-export function ABC(index) {
+export function removeItem(index) {
   return {
-    type: ActionTypes.PAGE_EX_ABC,
+    type: ActionTypes.PAGE_EX_REMOVE_ITEM,
     index,
   };
 }

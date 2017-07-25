@@ -36,6 +36,7 @@ const config = {
       store: `${inProject(project.srcDir)}/store/`,
       components: `${inProject(project.srcDir)}/components/`,
       styles: `${inProject(project.srcDir)}/styles/`,
+      helpers: `${inProject(project.srcDir)}/helpers/`,
     },
   },
   externals: project.externals,
