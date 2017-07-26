@@ -1,0 +1,9 @@
+{
+  "presets": [
+    ["es2015", {"modules": false}],
+    "react"
+  ],
+  "plugins": [
+    ["lodash", { "id": ["lodash", "semantic-ui-react"] }]
+  ]
+}

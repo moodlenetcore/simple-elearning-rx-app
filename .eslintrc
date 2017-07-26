@@ -1,28 +1,51 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
-  ],
-  "plugins": [
-    "babel",
-    "react",
-    "promise"
-  ],
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "env": {
-    "browser" : true
+    "browser": true,
+    "es6": true
   },
-  "globals": {
-    "__DEV__"      : false,
-    "__TEST__"     : false,
-    "__PROD__"     : false,
-    "__COVERAGE__" : false
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "config/base.js"
+      },
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "./src"
+        ]
+      }
+    }
   },
-  "rules": {
-    "key-spacing"          : "off",
-    "jsx-quotes"           : [2, "prefer-single"],
-    "max-len"              : [2, 120, 2],
-    "object-curly-spacing" : [2, "always"],
-    "comma-dangle"         : "off"
-  }
+  "plugins": [
+    "react"
+  ],
+    "rules": {
+        "id-length": [
+            2,
+            {
+              "min": 3,
+              "max": 35,
+              "properties": "never",
+              "exceptions": [ "_", "cb", "$" ]
+            }
+        ],
+        "max-len": [ 2, 120, 2 ],
+        "max-params": [ 2, 3 ],
+        "no-cond-assign": [ 2, "except-parens" ],
+        "quote-props": 0,
+        "linebreak-style": [ "error", "windows" ],
+        "react/require-extension": 0,
+        "react/forbid-prop-types": 1,
+        "react/sort-comp": 1,
+        "import/no-extraneous-dependencies": [
+          "warn",
+          { "devDependencies": true }
+        ],
+        "unicode-bom": 0
+    }
 }
