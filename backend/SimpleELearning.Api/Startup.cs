@@ -34,10 +34,8 @@ namespace SimpleELearning.Api
         {
             // Add framework services.
             services.AddMvc();
-
-            services.AddScoped<IDbContextFactory<SimpleELearningContext>, DbContextFactory>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
+            services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddSwaggerGen(c =>
             {

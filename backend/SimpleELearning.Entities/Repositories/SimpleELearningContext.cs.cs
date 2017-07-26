@@ -5,7 +5,7 @@
 
     public class SimpleELearningContext : DbContext
     {
-        public SimpleELearningContext(DbContextOptions options) : base(options) { }
+        public SimpleELearningContext(DbContextOptions<SimpleELearningContext> options) : base(options) { }
 
         #region DbSet
         public DbSet<CourseCategory> CourseCategories { get; set; }

@@ -11,9 +11,9 @@
     [Route("api/users")]
     public class UsersController : BaseController
     {
-        private readonly IEntityService<User> _userservice;
+        private readonly IUserService _userservice;
 
-        public UsersController(IEntityService<User> userservice)
+        public UsersController(IUserService userservice)
         {
             _userservice = userservice;
 

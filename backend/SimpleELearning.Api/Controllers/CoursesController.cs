@@ -11,9 +11,9 @@
     [Route("api/courses")]
     public class CoursesController : BaseController
     {
-        private readonly IEntityService<Course> _courseService;
+        private readonly ICourseService _courseService;
 
-        public CoursesController(IEntityService<Course> courseService)
+        public CoursesController(ICourseService courseService)
         {
             _courseService = courseService;
         }
@@ -27,9 +27,9 @@
 
         // GET api/courses/5
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(long id)
         {
-            var course = _courseService.Get(s => s.Id == id).FirstOrDefault();
+            var course = _courseService.GetById(id);
 
             if (course == null) return NotFound();
 

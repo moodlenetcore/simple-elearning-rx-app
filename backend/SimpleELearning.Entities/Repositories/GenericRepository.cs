@@ -1,64 +1,79 @@
-﻿namespace SimpleELearning.Entities.Repositories
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using Microsoft.EntityFrameworkCore;
-    using LinqKit;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using LinqKit;
+using SimpleELearning.Entities.Models;
 
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+namespace SimpleELearning.Entities.Repositories
+{
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        internal DbContext _context;
-        internal DbSet<TEntity> _dbSet;
+        private readonly DbContext _context;
+        private DbSet<TEntity> _entities;
 
         public GenericRepository(DbContext context)
         {
             _context = context;
-            _dbSet = context.Set<TEntity>();
+            _entities = context.Set<TEntity>();
         }
         public IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             params Expression<Func<TEntity, object>>[] includeProperties)
         {
-            IQueryable<TEntity> query = _dbSet.AsExpandable();
+            IQueryable<TEntity> entities = _entities.AsExpandable();
 
             if (filter != null)
-                query = query.Where(filter);
+                entities = entities.Where(filter);
 
             foreach (var property in includeProperties)
-                query = query.Include(property);
+                entities = entities.Include(property);
 
             if (orderBy != null)
-                query = orderBy(query);
+                entities = orderBy(entities);
 
-            return query.AsEnumerable();
+            return entities.AsEnumerable();
         }
 
         public TEntity GetById(long id)
         {
-            return _context.Set<TEntity>().Find(id);
+            return _entities.SingleOrDefault(s => s.Id == id);
         }
 
-        public TEntity Add(TEntity entity)
+        public IEnumerable<TEntity> GetAll()
         {
-            return _dbSet.Add(entity).Entity;
+            return _entities.AsEnumerable();
         }
 
-        public TEntity Edit(TEntity entityToUpdate)
+        public void Insert(TEntity entity)
         {
-            _context.Entry(entityToUpdate).State = EntityState.Modified;
-            return entityToUpdate;
-        }
-
-        public void Delete(TEntity entityToDelete)
-        {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            if (entity == null)
             {
-                _dbSet.Attach(entityToDelete);
+                throw new ArgumentNullException("entity");
             }
-            _dbSet.Remove(entityToDelete);
+            _entities.Add(entity);
+            _context.SaveChanges();
+        }
+
+        public void Update(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _context.SaveChanges();
+        }
+
+        public void Delete(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _entities.Remove(entity);
+            _context.SaveChanges();
         }
 
         #region IDisposable Support
@@ -82,11 +97,6 @@
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
-        }        
         #endregion
     }
 }

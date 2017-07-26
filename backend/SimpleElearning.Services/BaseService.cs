@@ -7,10 +7,8 @@
 
     public class BaseService
   {
-    protected readonly IUnitOfWork _unitOfWork;
-      public BaseService(IUnitOfWork unitOfWork)
+      public BaseService()
       {
-          _unitOfWork = unitOfWork;
       }
   }
 }

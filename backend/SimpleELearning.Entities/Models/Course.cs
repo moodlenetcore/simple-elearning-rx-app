@@ -3,13 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Course
+    public class Course : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; }
-
-        public Guid? CourseCategoryId { get; set; }
-
+        public Int64 CourseCategoryId { get; set;}
         public CourseCategory CourseCategory { get; set; }
 
         public string FullName { get; set; }
