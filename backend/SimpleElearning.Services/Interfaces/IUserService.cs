@@ -6,15 +6,11 @@ using SimpleELearning.Entities.Models;
 
 namespace SimpleElearning.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IBaseService<User>
     {   
-        int Create(User entity);
-        int Update(User entity);
-        int Delete(User entity);
-        User GetById(long id);
-        IEnumerable<User> Get(
-            Expression<Func<User, bool>> filter = null,
-            Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null,
-            params Expression<Func<User, object>>[] includeProperties);
+        int Create(User user);
+        int Update(User user);
+        int Delete(User user);
+        User GetById(Guid id);
     }
 }

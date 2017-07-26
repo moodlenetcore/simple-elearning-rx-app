@@ -13,9 +13,9 @@ namespace SimpleELearning.Entities.Repositories
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             params Expression<Func<TEntity, object>>[] includeProperties);
         IEnumerable<TEntity> GetAll();
-        TEntity GetById(long id);
         void Insert(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        void Update(TEntity entityToUpdate);
+        void Delete(object id);
+        void Delete(TEntity entityToDelete);
     }
 }

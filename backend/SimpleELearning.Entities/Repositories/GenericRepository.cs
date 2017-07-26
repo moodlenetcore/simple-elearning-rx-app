@@ -10,20 +10,20 @@ namespace SimpleELearning.Entities.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly DbContext _context;
-        private DbSet<TEntity> _entities;
+        internal DbContext _context;
+        internal DbSet<TEntity> _dbSet;
 
         public GenericRepository(DbContext context)
         {
             _context = context;
-            _entities = context.Set<TEntity>();
+            _dbSet = context.Set<TEntity>();
         }
         public IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             params Expression<Func<TEntity, object>>[] includeProperties)
         {
-            IQueryable<TEntity> entities = _entities.AsExpandable();
+            IQueryable<TEntity> entities = _dbSet.AsExpandable();
 
             if (filter != null)
                 entities = entities.Where(filter);
@@ -37,43 +37,35 @@ namespace SimpleELearning.Entities.Repositories
             return entities.AsEnumerable();
         }
 
-        public TEntity GetById(long id)
-        {
-            return _entities.SingleOrDefault(s => s.Id == id);
-        }
-
         public IEnumerable<TEntity> GetAll()
         {
-            return _entities.AsEnumerable();
+            return _dbSet.AsEnumerable();
         }
 
         public void Insert(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _entities.Add(entity);
-            _context.SaveChanges();
+            _dbSet.Add(entity);
         }
 
-        public void Update(TEntity entity)
+        public void Update(TEntity entityToUpdate)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _context.SaveChanges();
+            _dbSet.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(object id)
         {
-            if (entity == null)
+            TEntity entityToDelete = _dbSet.Find(id);
+            Delete(entityToDelete);
+        }
+
+        public void Delete(TEntity entityToDelete)
+        {
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                throw new ArgumentNullException("entity");
+                _dbSet.Attach(entityToDelete);
             }
-            _entities.Remove(entity);
-            _context.SaveChanges();
+            _dbSet.Remove(entityToDelete);
         }
 
         #region IDisposable Support

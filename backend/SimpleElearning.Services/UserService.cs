@@ -8,7 +8,7 @@ using SimpleELearning.Entities.Repositories;
 
 namespace SimpleElearning.Services
 {
-    public class UserService : BaseService, IUserService
+    public class UserService : BaseService<User>, IUserService
     {
         private readonly IGenericRepository<User> _userRepository;
         public UserService(IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -16,43 +16,27 @@ namespace SimpleElearning.Services
             _userRepository = unitOfWork.GetRepository<User>();
         }
 
-        public int Create(User entity)
+        public int Create(User user)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _userRepository.Add(entity);
+            user.Id = Guid.NewGuid();
+            _userRepository.Insert(user);
             return _unitOfWork.Commit();
         }
 
-        public int Delete(User entity)
+        public int Delete(User user)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _userRepository.Delete(entity);
+            _userRepository.Delete(user);
             return _unitOfWork.Commit();
         }
 
-        public IEnumerable<User> Get(Expression<Func<User, bool>> filter = null, Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null, params Expression<Func<User, object>>[] includeProperties)
+        public User GetById(Guid id)
         {
-            return _userRepository.Get(filter, orderBy, includeProperties);
+            return _userRepository.Get(s => s.Id == id).FirstOrDefault();
         }
 
-        public User GetById(long id)
+        public int Update(User user)
         {
-            return _userRepository.GetById(id);
-        }
-
-        public int Update(User entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _userRepository.Edit(entity);
+            _userRepository.Update(user);
             return _unitOfWork.Commit();
         }
     }

@@ -8,49 +8,35 @@ using SimpleELearning.Entities.Repositories;
 
 namespace SimpleElearning.Services
 {
-    public class CourseService : BaseService, ICourseService
+    public class CourseService : BaseService<Course>, ICourseService
     {
         private readonly IGenericRepository<Course> _courseRepository;
-        public CourseService(IGenericRepository<Course> courseRepository) : base()
+        public CourseService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _courseRepository = courseRepository;
+            _courseRepository = unitOfWork.GetRepository<Course>();
         }
 
-        public int Create(Course courseEntity)
+        public int Create(Course course)
         {
-            var course =  new Course
-            {
-                
-            }
-        }
-
-        public int Delete(Course courseEntity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _courseRepository.Delete(entity);
+            course.Id = Guid.NewGuid();
+            _courseRepository.Insert(course);
             return _unitOfWork.Commit();
         }
 
-        public Course GetById(long id)
+        public int Delete(Course course)
         {
-            var course = _courseRepository.GetById(id);
-            if (course != null)
-            {
-                return course;
-            }
-            return null;
+            _courseRepository.Delete(course);
+            return _unitOfWork.Commit();
         }
 
-        public int Update(Course courseEntity)
+        public Course GetById(Guid id)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            _courseRepository.Edit(entity);
+            return _courseRepository.Get(s => s.Id == id).FirstOrDefault();
+        }
+
+        public int Update(Course course)
+        {
+            _courseRepository.Update(course);
             return _unitOfWork.Commit();
         }
     }

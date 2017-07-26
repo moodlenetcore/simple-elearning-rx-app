@@ -22,12 +22,12 @@
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_courseService.Get().ToList());
+            return Ok(_courseService.GetAll().ToList());
         }
 
         // GET api/courses/5
         [HttpGet("{id}")]
-        public IActionResult Get(long id)
+        public IActionResult Get(Guid id)
         {
             var course = _courseService.GetById(id);
 
@@ -40,9 +40,8 @@
         [HttpPost]
         public IActionResult Create(Course course)
         {
-            if (course == null) return BadRequest();
-
-            course.Id = Guid.NewGuid();
+            if (course == null) 
+                return BadRequest();
 
             if (_courseService.Create(course) > 0)
                 return CreatedAtAction("Get", new { id = course.Id });
@@ -57,7 +56,7 @@
         {
             if (id == null || course.Id != id) return BadRequest();
 
-            var existingCourse = _courseService.Get(s => s.Id == id).FirstOrDefault();
+            var existingCourse = _courseService.GetById(id);
             if (existingCourse == null) return NotFound();
 
             existingCourse.CourseCategoryId = course.CourseCategoryId;
@@ -77,7 +76,7 @@
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var existingCourse = _courseService.Get(s => s.Id == id).FirstOrDefault();
+            var existingCourse = _courseService.GetById(id);
             if (existingCourse == null) return NotFound();
 
             if (_courseService.Delete(existingCourse) > 0)
