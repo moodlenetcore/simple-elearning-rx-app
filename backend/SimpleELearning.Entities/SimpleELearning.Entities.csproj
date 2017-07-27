@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="1.1.10"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="1.1.1"/>
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0-msbuild3-final"/>
+  </ItemGroup>
+</Project>
