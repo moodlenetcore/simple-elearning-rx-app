@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 import { removeArrayItem } from 'helpers/immutableHelper';
 import * as ActionTypes from './PageExActionTypes';
 import { PAGE_EX_INITIAL_STATE } from './PageExConstants';

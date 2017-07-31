@@ -81,6 +81,7 @@ config.module.rules.push({
         ],
       ],
       presets: [
+        'es2015',
         'babel-preset-react',
         ['babel-preset-env', {
           modules: false,
@@ -103,7 +104,7 @@ const extractStyles = new ExtractTextPlugin({
 })
 
 config.module.rules.push({
-  test: /\.(sass|scss)$/,
+  test: /\.(sass|scss|css)$/,
   loader: extractStyles.extract({
     fallback: 'style-loader',
     use: [
