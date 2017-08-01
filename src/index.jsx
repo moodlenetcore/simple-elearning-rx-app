@@ -8,6 +8,7 @@ import configureStore from 'store/configureStore';
 import App from 'components/App/AppContainer';
 import CourseCategory from 'components/CourseCategory/CourseCategoryContainer';
 import PageExContainer from 'components/PageEx/PageExContainer';
+import Course from 'components/Course/CourseContainer';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ render((
         <Route path="/page-ex" component={PageExContainer}>
           <Route path="/page-ex/:id" component={PageExContainer} />
         </Route>
+        <Route path="/category" component={Course} />
       </Route>
     </Router>
   </Provider>
