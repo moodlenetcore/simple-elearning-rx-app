@@ -18,7 +18,7 @@ export class UserListContainer extends React.Component{
     }
 
     componentDidMount(){
-        this.props.action.getUserAction()
+        this.props.action.getUsersAction()
             .catch(error => {
                 toastr.error(error);
             });

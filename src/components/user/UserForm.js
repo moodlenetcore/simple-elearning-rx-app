@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import FieldInput from '../common/FieldInput';
 import SelectInput from '../common/SelectInput';
 
-export const UserForm = ({ handleSubmit, pristine, reset, submitting, heading, authors, handleSave, handleCancel }) => {
+export const UserForm = ({ handleSubmit, pristine, reset, submitting, heading, handleSave, handleCancel }) => {
 	return (
 		<form onSubmit={handleSubmit(handleSave)}>
 			<h1>{heading}</h1>
@@ -53,7 +53,6 @@ UserForm.propTypes={
 	reset: PropTypes.func.isRequired,
 	submitting: PropTypes.bool.isRequired,
 	heading: PropTypes.string.isRequired,
-	authors: PropTypes.array.isRequired,
 	handleSave: PropTypes.func.isRequired,
 	handleCancel: PropTypes.func.isRequired,
 }

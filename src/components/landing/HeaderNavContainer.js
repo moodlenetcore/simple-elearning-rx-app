@@ -14,7 +14,7 @@ export const HeaderNavContainer = ({apiCallsInProgress}) => {
                 <div className="collapse navbar-collapse" id="mainNav">
                     <div className="navbar-nav">
                         <NavLink className="nav-item nav-link" exact activeClassName="active" to="/">Home</NavLink>
-                        <NavLink className="nav-item nav-link" activeClassName="active" to="/courses" >Courses</NavLink>
+                        <NavLink className="nav-item nav-link" activeClassName="active" to="/users" >Users</NavLink>
                         <NavLink className="nav-item nav-link" activeClassName="active" to="/about">About</NavLink>
 
                         <span className="ml-5">

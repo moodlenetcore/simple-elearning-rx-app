@@ -48,10 +48,10 @@ export class AddOrEditUserContainer extends React.Component{
             <div className="container">
                 <UserForm
                     heading={heading}
-                    handleSave={this.props.handleSave}
-                    handleCancel={this.props.handleCancel}
+                    handleSave={this.handleSave}
+                    handleCancel={this.handleCancel}
                     initialValues={this.props.initialValues}
-                ></UserForm>
+                />
             </div>
         );
     }
@@ -65,6 +65,11 @@ const mapStateToProps = (state, ownProps) => {
             initialValues: state.selectedUserReducer.user
         };
     }
+    else {
+        return {
+            
+        };
+    }
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -73,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
 
 AddOrEditUserContainer.propTypes = {
     action: PropTypes.object.isRequired,
-    history: propTypes.object,
+    history: PropTypes.object,
     initialValues: PropTypes.object,
     match: PropTypes.object.isRequired
 };

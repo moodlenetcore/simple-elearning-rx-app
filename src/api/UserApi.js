@@ -5,8 +5,18 @@ import delay from './delay';
 // All calls return promises.
 const users = [
     {
-        id: "12345",
+        id: "1",
         username: "tan",
+        password: "123456"
+    },
+    {
+        id: "2",
+        username: "tan2",
+        password: "123456"
+    },
+    {
+        id: "3",
+        username: "tan3",
         password: "123456"
     }
 ];
@@ -17,7 +27,7 @@ function replaceAll(str, find, replace) {
 
 //This would be performed on the server in a real app. Just stubbing in.
 const generateId = (user) => {
-    return replaceAll(user.title, ' ', '-');
+    return replaceAll(user.username, ' ', '-');
 };
 
 class UserApi {
@@ -35,7 +45,7 @@ class UserApi {
             setTimeout(() => {
                 // Simulate server-side validation
                 const minUserTitleLength = 1;
-                if (user.title.length < minUserTitleLength) {
+                if (user.username.length < minUserTitleLength) {
                     reject(`Title must be at least ${minUserTitleLength} characters.`);
                 }
 
@@ -47,7 +57,6 @@ class UserApi {
                     //The server would generate ids and watchHref's for new users in a real app.
                     //Cloning so copy returned is passed by value rather than by reference.
                     user.id = generateId(user);
-                    user.watchHref = `http://www.pluralsight.com/users/${user.id}`;
                     users.push(user);
                 }
 
