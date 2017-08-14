@@ -1,12 +1,11 @@
-﻿namespace SimpleELearning.Api.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
-    using System;
-    using SimpleELearning.Entities.Repositories;
-    using SimpleELearning.Entities.Models;
-    using SimpleElearning.Services.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System;
+using SimpleELearning.Entities.Models;
+using SimpleElearning.Services.Interfaces;
 
+namespace SimpleELearning.Api.Controllers
+{
     [Produces("application/json")]
     [Route("api/users")]
     public class UsersController : BaseController

@@ -1,8 +1,8 @@
-﻿namespace SimpleELearning.Entities.Repositories
-{
-    using Microsoft.EntityFrameworkCore;
-    using SimpleELearning.Entities.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleELearning.Entities.Models;
 
+namespace SimpleELearning.Entities.Repositories
+{
     public class SimpleELearningContext : DbContext
     {
         public SimpleELearningContext(DbContextOptions<SimpleELearningContext> options) : base(options)
