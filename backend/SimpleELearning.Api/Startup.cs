@@ -30,8 +30,8 @@ namespace SimpleELearning.Api
         {
             // Add framework services.
             services.AddMvc();
-            services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
+            //services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
