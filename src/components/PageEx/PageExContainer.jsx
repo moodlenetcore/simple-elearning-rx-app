@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { Table } from 'semantic-ui-react';
 
+import LoadingSpinner from 'components/Common/LoadingSpinnerComponent';
 import CourseCategoryRow from './CourseCategoryRow';
 import * as PageExActions from './PageExActions';
 
@@ -35,28 +36,9 @@ class PageExContainer extends React.Component {
     }
 
     return (
-      <Container>
-        <Row>
-          <Col md="4" className="pull-left">
-            {
-              pageEx.courseCategories ?
-                <Table celled>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.HeaderCell>Category Name</Table.HeaderCell>
-                      <Table.HeaderCell />
-                    </Table.Row>
-                  </Table.Header>
-                  <Table.Body>
-                    {courseCategoriesRowItem}
-                  </Table.Body>
-                </Table> :
-              null
-            }
-          </Col>
-          <Col md="8" />
-        </Row>
-      </Container>
+      <div className="loading-box">
+        <LoadingSpinner visible size={64} type="longBars" />
+      </div>
     );
   }
 }

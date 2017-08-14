@@ -9,7 +9,7 @@ html {
 
 html,
 body {
-  margin: 0;
+  margin: 20;
   padding: 0;
   height: 100%;
 }
@@ -18,4 +18,15 @@ body {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+.loading-box {
+  background-color: $color-modal-shadow;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

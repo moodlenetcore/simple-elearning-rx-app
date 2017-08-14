@@ -1,5 +1,4 @@
-const path = require('path')
-const NODE_ENV = process.env.NODE_ENV || 'development'
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
   /** The environment to use when building the project */
@@ -31,4 +30,4 @@ module.exports = {
     'redux-thunk',
     'react-router',
   ],
-}
+};
