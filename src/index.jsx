@@ -8,18 +8,22 @@ import configureStore from 'store/configureStore';
 import App from 'components/App/AppContainer';
 import CourseCategory from 'components/CourseCategory/CourseCategoryContainer';
 import PageExContainer from 'components/PageEx/PageExContainer';
+import { BASE_ROUTE } from 'components/Common/CommonConstants';
 
 const store = configureStore();
 
 render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path={`/${BASE_ROUTE}`} component={App}>
         <IndexRoute component={PageExContainer} />
-        <Route path="/page-ex" component={PageExContainer}>
-          <Route path="/page-ex/:id" component={PageExContainer} />
+        <Route path={`/${BASE_ROUTE}/page-ex`} component={PageExContainer}>
+          <Route path={`/${BASE_ROUTE}/page-ex/:id`} component={PageExContainer} />
         </Route>
       </Route>
+      <Router path={`/${BASE_ROUTE}/administrator`} component={App}>
+        <Router path={`/${BASE_ROUTE}/administrator/course-category`} component={CourseCategory} />
+      </Router>
     </Router>
   </Provider>
 ), document.getElementById('root'));
