@@ -33,7 +33,7 @@ namespace SimpleELearning.Api
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:11112").AllowAnyHeader());
+                    builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
             });
             // Add framework services.
             services.AddMvc();
