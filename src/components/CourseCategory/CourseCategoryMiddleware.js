@@ -3,11 +3,9 @@ import CourseCategoryApi from './CourseCategoryApi';
 
 function loadCourseCategory() {
   return (dispatch) => {
-    console.log('aaa');
     dispatch(Actions.setShowSpin(true));
     return CourseCategoryApi.getCourseCategories()
       .then((response) => {
-        console.log(response);
         console.log(response.data);
         dispatch(Actions.getCourseCategorySuccess(response.data));
         dispatch(Actions.setShowSpin(false));

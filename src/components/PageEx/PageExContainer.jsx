@@ -21,40 +21,13 @@ class PageExContainer extends React.Component {
   }
 
   render() {
-    const {
-        pageEx,
-      } = this.props;
-
-    let courseCategoriesRowItem = [];
-    if (pageEx.courseCategories) {
-      courseCategoriesRowItem = pageEx.courseCategories.map((item, index) => (
-        <CourseCategoryRow
-          index={index}
-          name={item.name}
-          onRemoveItem={this.removeItem}
-        />
-      ));
-    }
+   
 
     return (
       <Container>
         <Row>
           <Col md="4" className="pull-left">
-            {
-              pageEx.courseCategories ?
-                <Table celled>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.HeaderCell>Category Name</Table.HeaderCell>
-                      <Table.HeaderCell />
-                    </Table.Row>
-                  </Table.Header>
-                  <Table.Body>
-                    {courseCategoriesRowItem}
-                  </Table.Body>
-                </Table> :
-              null
-            }
+            
           </Col>
           <Col md="8" />
         </Row>
@@ -68,10 +41,7 @@ PageExContainer.propTypes = {
 };
 
 export function mapStateToProps(state) {
-  const pageEx = state.pageEx;
-  return {
-    pageEx,
-  };
+  return state;
 }
 
 export function mapDispatchToProps(dispatch) {

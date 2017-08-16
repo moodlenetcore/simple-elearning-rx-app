@@ -7,17 +7,17 @@ html {
   box-sizing: border-box;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   margin: 20;
   padding: 0;
   height: 100%;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
 }
 
 .loading-box {

@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using SimpleELearning.Entities.Models;
 using SimpleElearning.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace SimpleELearning.Api.Controllers
 {
