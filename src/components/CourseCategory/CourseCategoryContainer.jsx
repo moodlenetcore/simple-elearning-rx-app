@@ -17,20 +17,21 @@ class CourseCategoryContainer extends React.Component {
   }
 
   render() {
-    console.log('after load success');
-    console.log(this.props.data);
     return (
       <div>
-        <h4>Comming soon</h4>
+        
       </div>
     );
   }
 }
 
+CourseCategoryContainer.propTypes = {
+  loadCourseCategory: PropTypes.func,
+};
+
 export function mapStateToProps(state) {
-  const courseCategoryState = state.administrator.courseCategoryPage;
   return {
-    data: courseCategoryState,
+    courseCategoryPage: state.administrator.courseCategoryPage,
   };
 }
 
