@@ -5,9 +5,13 @@ import CourseCategoryReducer from 'components/CourseCategory/CourseCategoryReduc
 import PageExReducer from 'components/PageEx/PageExReducer';
 
 export const rootReducer = combineReducers({
-  app: AppReducer,
-  courseCategory: CourseCategoryReducer,
-  pageEx: PageExReducer,
+  app: combineReducers({
+    index: AppReducer,
+    pageEx: PageExReducer,
+  }),
+  administrator: combineReducers({
+    courseCategoryPage: CourseCategoryReducer,
+  }),
 });
 
 export default rootReducer;

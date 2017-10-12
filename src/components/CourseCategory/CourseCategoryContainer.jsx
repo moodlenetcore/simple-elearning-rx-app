@@ -5,16 +5,41 @@ import { connect } from 'react-redux';
 
 import { Button } from 'semantic-ui-react';
 
+import MiddleWare from './CourseCategoryMiddleware';
+
 class CourseCategoryContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.loadCourseCategory();
+  }
+
   render() {
     return (
-       <div>
-    <Button >Primary</Button>
-    <Button >Secondary</Button>
-  </div>
+      <div>
+        <h1>Test css</h1>
+      </div>
     );
   }
 }
 
-export default CourseCategoryContainer;
+CourseCategoryContainer.propTypes = {
+  loadCourseCategory: PropTypes.func,
+};
+
+export function mapStateToProps(state) {
+  return {
+    courseCategoryPage: state.administrator.courseCategoryPage,
+  };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    loadCourseCategory: () => dispatch(MiddleWare.loadCourseCategory()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseCategoryContainer);
 

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import * as appActions from './AppActions';
 
@@ -24,7 +25,7 @@ export class AppContainer extends React.Component {
       <div>
         <div style={{ textAlign: 'center' }}>
           <h1>APP</h1>
-          <h4>----------------------------------------------------------------------------</h4>
+          <h4><Link to={'/elearning-app/administrator/course-category'}>Login</Link></h4>
         </div>
 
         {this.props.children}

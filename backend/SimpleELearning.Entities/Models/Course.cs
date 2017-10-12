@@ -1,11 +1,11 @@
-﻿namespace SimpleELearning.Entities.Models
-{
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 
+namespace SimpleELearning.Entities.Models
+{
     public class Course : BaseEntity
     {
-        public Int64 CourseCategoryId { get; set;}
+        public int CourseCategoryId { get; set;}
+
         public CourseCategory CourseCategory { get; set; }
 
         public string FullName { get; set; }

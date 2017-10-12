@@ -1,14 +1,11 @@
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using SimpleELearning.Entities.Models;
 
 namespace SimpleELearning.Entities.Repositories
 {
-    using Microsoft.EntityFrameworkCore.Infrastructure;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using SimpleELearning.Entities.Models;
-
-    public class UnitOfWork : IUnitOfWork
+   public class UnitOfWork : IUnitOfWork
     {
         private readonly SimpleELearningContext _context;
         private Dictionary<Type, object> _repositories;
