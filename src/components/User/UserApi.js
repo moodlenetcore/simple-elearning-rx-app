@@ -1,25 +1,6 @@
-import delay from './delay';
-
-// This file mocks a web API by working with the hard-coded data below.
-// It uses setTimeout to simulate the delay of an AJAX call.
-// All calls return promises.
-const users = [
-    {
-        id: "1",
-        username: "tan",
-        password: "123456"
-    },
-    {
-        id: "2",
-        username: "tan2",
-        password: "123456"
-    },
-    {
-        id: "3",
-        username: "tan3",
-        password: "123456"
-    }
-];
+import delay from '../../delay';
+import * as axios from 'axios';
+import {BASE_USER_API_PATH} from './UserConstants'
 
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
@@ -31,12 +12,8 @@ const generateId = (user) => {
 };
 
 class UserApi {
-    static getAllUsers() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(Object.assign([], users));
-            }, delay);
-        });
+    static getUsers() {
+        return axios.get(BASE_COURSE_CATEGORY_API_PATH);
     }
 
     static saveUser(user) {

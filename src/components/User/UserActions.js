@@ -1,9 +1,9 @@
-import * as ActionType from './ActionType';
+import * as ActionTypes from './UserActionTypes';
 import UserApi from '../api/UserApi';
 import { ApiCallBeginAction, ApiCallErrorAction } from './ApiAction';
 
 export const getUsersResponse = users => ({
-    type: ActionType.GET_USERS_RESPONSE,
+    type: ActionTypes.GET_USERS_RESPONSE,
     users
 });
 
@@ -22,11 +22,11 @@ export function getUsersAction() {
 }
 
 export const addNewUserResponse = () => ({
-    type: ActionType.ADD_NEW_USER_RESPONSE
+    type: ActionTypes.ADD_NEW_USER_RESPONSE
 });
 
 export const updateExistingUserResponse = () => ({
-    type: ActionType.UPDATE_EXISTING_USER_RESPONSE
+    type: ActionTypes.UPDATE_EXISTING_USER_RESPONSE
 });
 
 export function saveUserAction(userBeingAddedOrEdited) {
@@ -53,7 +53,7 @@ export function saveUserAction(userBeingAddedOrEdited) {
 }
 
 export const getUserResponse = userFound => ({
-    type: ActionType.GET_USER_RESPONSE,
+    type: ActionTypes.GET_USER_RESPONSE,
     user: userFound
 });
 
@@ -72,7 +72,7 @@ export function getUserAction(userId) {
 }
 
 export const deleteUserResponse = () => ({
-    type: ActionType.DELETE_USER_RESPONSE
+    type: ActionTypes.DELETE_USER_RESPONSE
 });
 
 export function deleteUserAction(userId) {

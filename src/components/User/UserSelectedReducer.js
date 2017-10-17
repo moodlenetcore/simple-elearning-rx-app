@@ -3,7 +3,7 @@ import initialState from './initialState';
 import _ from 'lodash';
 
 
-const selectedUserReducer = (state = initialState.selectedUserReducer, action) => {
+const SelectedUserReducer = (state = initialState.selectedUserReducer, action) => {
     switch(action.type) {
 
         case ActionType.GET_USER_RESPONSE: {
@@ -19,4 +19,4 @@ const selectedUserReducer = (state = initialState.selectedUserReducer, action) =
 };
 
 
-export default selectedUserReducer;
+export default SelectedUserReducer;
