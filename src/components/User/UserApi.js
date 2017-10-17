@@ -1,4 +1,4 @@
-import delay from '../../delay';
+import delay from './delay';
 import * as axios from 'axios';
 import {BASE_USER_API_PATH} from './UserConstants'
 

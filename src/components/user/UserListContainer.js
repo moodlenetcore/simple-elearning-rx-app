@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
-import * as userAction from '../../action/UserAction';
+import * as userAction from './UserActions';
 import UserList from './UserList';
 
 export class UserListContainer extends React.Component{

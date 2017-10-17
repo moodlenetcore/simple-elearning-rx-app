@@ -1,12 +1,12 @@
-import * as ActionType from '../action/ActionType';
-import initialState from './initialState';
+import * as ActionTypes from './UserActionTypes';
+import initialState from './UserInitialState';
 import _ from 'lodash';
 
 
 const SelectedUserReducer = (state = initialState.selectedUserReducer, action) => {
     switch(action.type) {
 
-        case ActionType.GET_USER_RESPONSE: {
+        case ActionTypes.GET_USER_RESPONSE: {
             return {
                 ...state,
                 user: _.assign(action.user)

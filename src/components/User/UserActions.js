@@ -1,5 +1,5 @@
 import * as ActionTypes from './UserActionTypes';
-import UserApi from '../api/UserApi';
+import UserApi from './UserApi';
 import { ApiCallBeginAction, ApiCallErrorAction } from './ApiAction';
 
 export const getUsersResponse = users => ({

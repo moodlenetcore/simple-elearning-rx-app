@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
-import usersReducer from './usersReducer';
-import selectedUserReducer from './selectedUserReducer';
+import usersReducer from './UserReducer';
+import selectedUserReducer from './UserSelectedReducer';
 import apiReducer from './apiReducer';
 
 export default combineReducers({
