@@ -42,7 +42,8 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.11",
     "semantic-ui-react": "^0.71.1",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "immutable" : "3.8.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
