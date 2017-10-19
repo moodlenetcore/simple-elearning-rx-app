@@ -8,7 +8,7 @@ using SimpleElearning.Services.Interfaces;
 
 namespace SimpleElearning.Services
 {
-    public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
+    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : BaseEntity
     {
         protected readonly IUnitOfWork _unitOfWork;
         public BaseService(IUnitOfWork unitOfWork)
@@ -16,9 +16,14 @@ namespace SimpleElearning.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<TEntity> GetAll()
-        {
-            return _unitOfWork.GetRepository<TEntity>().GetAll();
-        }
-    }
+        public abstract IEnumerable<TEntity> GetAll();
+
+        public abstract int Create(TEntity entity);
+
+        public abstract int Delete(TEntity entity);
+
+        public abstract TEntity GetById(Guid id);
+
+        public abstract int  Update(TEntity entity);
+  }
 }

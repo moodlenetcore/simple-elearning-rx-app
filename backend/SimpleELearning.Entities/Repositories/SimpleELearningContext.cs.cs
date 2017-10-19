@@ -5,7 +5,7 @@ namespace SimpleELearning.Entities.Repositories
 {
     public class SimpleELearningContext : DbContext
     {
-        public SimpleELearningContext(DbContextOptions<SimpleELearningContext> options) : base(options)
+        public SimpleELearningContext() : base()
         {
         }
 
@@ -17,7 +17,11 @@ namespace SimpleELearning.Entities.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=SimpleELearning;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }
 }

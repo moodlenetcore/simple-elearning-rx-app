@@ -16,7 +16,7 @@ export class AdministratorContainer extends React.Component {
     return (
       <div>
         <div style={{ textAlign: 'center' }}>
-          <h1>Adnimistrator</h1>
+          <h1>Administrator</h1>
         </div>
 
         {this.props.children}

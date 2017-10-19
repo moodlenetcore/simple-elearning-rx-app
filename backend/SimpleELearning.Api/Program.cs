@@ -15,7 +15,6 @@ namespace SimpleELearning.Api
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
-
             host.Run();
         }
     }
