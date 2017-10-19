@@ -48,6 +48,7 @@ namespace SimpleELearning.Api
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICourseCategoriesService, CourseCategoriesService>();
 
             services.AddSwaggerGen(c =>
             {

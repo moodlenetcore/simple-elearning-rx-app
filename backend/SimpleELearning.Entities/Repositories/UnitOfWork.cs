@@ -35,7 +35,7 @@ namespace SimpleELearning.Entities.Repositories
             {
                 return _context.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
                 return -1;
             }
