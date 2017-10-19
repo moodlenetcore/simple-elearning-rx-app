@@ -9,9 +9,8 @@ import App from 'components/App/AppContainer';
 import Administrator from 'components/Administrator/AdministratorContainer';
 import CourseCategory from 'components/CourseCategory/CourseCategoryContainer';
 import PageEx from 'components/PageEx/PageExContainer';
+import UserList from 'components/User/UserListContainer';
 import { BASE_ROUTE } from 'components/Common/CommonConstants';
-
-import 'styles/main.scss';
 
 const store = configureStore();
 
@@ -26,6 +25,7 @@ render((
       </Route>
       <Router path={`/${BASE_ROUTE}/administrator`} component={Administrator}>
         <Router path={`/${BASE_ROUTE}/administrator/course-category`} component={CourseCategory} />
+        <Router path={`/${BASE_ROUTE}/administrator/user`} component={UserList} />
       </Router>
     </Router>
   </Provider>

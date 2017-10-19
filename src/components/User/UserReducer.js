@@ -3,7 +3,7 @@ import {USER_INITIAL_STATE} from './UserConstants';
 import { fromJS } from 'immutable';
 import _ from 'lodash';
 
-const UsersReducer = (state = USER_INITIAL_STATE, action) => {
+const UserReducer = (state = USER_INITIAL_STATE, action) => {
     switch(action.type) {
         case ActionTypes.GET_USERS_RESPONSE: {
             // '...' spread operator clones the state
@@ -21,4 +21,4 @@ const UsersReducer = (state = USER_INITIAL_STATE, action) => {
     }
 };
 
-export default UsersReducer;
+export default UserReducer;

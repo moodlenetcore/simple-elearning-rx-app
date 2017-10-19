@@ -113,7 +113,7 @@ export class UserListContainer extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    users: state.usersReducer.users
+    users: state.administrator.userPage.users
 });
 
 const mapDispatchToProps = dispatch => ({

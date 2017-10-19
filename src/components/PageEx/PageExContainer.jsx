@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { Table } from 'semantic-ui-react';
 
-import 'styles/main.scss';
 import LoadingSpinner from 'components/Common/LoadingSpinnerComponent';
 import CourseCategoryRow from './CourseCategoryRow';
 import * as PageExActions from './PageExActions';
