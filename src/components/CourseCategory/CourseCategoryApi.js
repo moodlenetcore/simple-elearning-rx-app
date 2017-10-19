@@ -1,6 +1,9 @@
 import * as axios from 'axios';
 
-import { BASE_COURSE_CATEGORY_API_PATH } from './CourseCategoryConstants';
+import {
+  BASE_COURSE_CATEGORY_API_PATH
+} from './CourseCategoryConstants';
+
 
 class CourseCategoryApi {
   static getCourseCategories() {
@@ -15,4 +18,3 @@ class CourseCategoryApi {
 }
 
 export default CourseCategoryApi;
-

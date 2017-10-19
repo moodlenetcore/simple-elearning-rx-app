@@ -41,11 +41,11 @@ namespace SimpleELearning.Api
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
             });
-            //services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
+            var a = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IUserService, UserService>();
 
