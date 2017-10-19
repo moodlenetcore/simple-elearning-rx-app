@@ -41,9 +41,9 @@ namespace SimpleELearning.Api
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
             });
-            var a = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
+
+            //services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICourseService, CourseService>();
