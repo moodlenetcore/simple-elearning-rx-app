@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SimpleELearning.Entities.Repositories;
+using SimpleELearning.Entities.Interface;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
 using SimpleElearning.Services.Interfaces;
@@ -44,8 +45,10 @@ namespace SimpleELearning.Api
 
             //services.AddDbContext<SimpleELearningContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<SimpleELearningContext>(options => options.UseInMemoryDatabase());
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICourseCategoryRepository, CourseCategoryRepository>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICourseCategoriesService, CourseCategoriesService>();

@@ -1,11 +1,11 @@
 using System;
 using SimpleELearning.Entities.Models;
+using SimpleELearning.Entities.Interface;
 
 namespace SimpleELearning.Entities.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
         int Commit();
     }
 }
