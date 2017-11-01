@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using SimpleELearning.Entities.Models;
 using SimpleELearning.Entities.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleELearning.Entities.Repositories
 {
    public class UnitOfWork : IUnitOfWork
     {
-        private readonly SimpleELearningContext _context;
+        private readonly DbContext _context;
 
-        public UnitOfWork(SimpleELearningContext simpleELearningContext)
+        public UnitOfWork(DbContext simpleELearningContext)
         {
             _context = simpleELearningContext;
         }

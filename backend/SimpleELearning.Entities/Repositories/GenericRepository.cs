@@ -9,7 +9,7 @@ using SimpleELearning.Entities.Interface;
 
 namespace SimpleELearning.Entities.Repositories
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         internal DbContext _context;
         internal DbSet<TEntity> _dbSet;
