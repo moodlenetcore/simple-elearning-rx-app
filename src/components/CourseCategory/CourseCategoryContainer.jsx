@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Button } from 'semantic-ui-react';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -19,8 +18,6 @@ class CourseCategoryContainer extends React.Component {
   }
 
   render() {
-    const a = this.props.loadCourseCategory;
-    debugger;
     return (
       <h1>11</h1>
     );
@@ -32,7 +29,6 @@ CourseCategoryContainer.propTypes = {
 };
 
 export function mapStateToProps(state) {
-  debugger;
   return {
     courseCategoryPage: state.administrator.courseCategoryPage,
   };

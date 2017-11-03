@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SimpleELearning.Entities.Models;
 
-namespace SimpleELearning.Entities.Repositories
+namespace SimpleELearning.Entities.Interface
 {
     public interface IGenericRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {

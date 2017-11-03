@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using LinqKit;
 using SimpleELearning.Entities.Models;
+using SimpleELearning.Entities.Interface;
 
 namespace SimpleELearning.Entities.Repositories
 {
@@ -18,7 +19,7 @@ namespace SimpleELearning.Entities.Repositories
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-        public IEnumerable<TEntity> Get(
+        public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             params Expression<Func<TEntity, object>>[] includeProperties)
@@ -37,29 +38,29 @@ namespace SimpleELearning.Entities.Repositories
             return entities.AsEnumerable();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _dbSet.AsEnumerable();
         }
 
-        public void Insert(TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
             _dbSet.Add(entity);
         }
 
-        public void Update(TEntity entityToUpdate)
+        public virtual void Update(TEntity entityToUpdate)
         {
             _dbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
-        public void Delete(object id)
+        public virtual void Delete(object id)
         {
             TEntity entityToDelete = _dbSet.Find(id);
             Delete(entityToDelete);
         }
 
-        public void Delete(TEntity entityToDelete)
+        public virtual void Delete(TEntity entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
